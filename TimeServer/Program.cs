@@ -11,7 +11,7 @@ namespace OngaBonga
             try
             {
                 //Set TcpListener to port Elite, local address to X
-                Int32 port = 13000;
+                Int32 port = 1337;
                 IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
                 //TcpListener server = new TcpListener(port); - alternative
