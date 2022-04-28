@@ -24,8 +24,8 @@ public class RequestServerTime : MonoBehaviour
         stream.Read(bytes, 0, bytes.Length);
         var msg = Encoding.ASCII.GetString(bytes);
         
-        Debug.Log("Simon says! Time & Date iz: "+msg);
-      
+        Debug.Log($"Simon says! Time & Date iz: {msg}");
+
         //Close client
         tcpClient.Close();
     }

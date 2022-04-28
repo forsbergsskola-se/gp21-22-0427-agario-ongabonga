@@ -14,15 +14,15 @@ namespace OngaBonga
 
                 //TcpListener server = new TcpListener(port); - obsolete
                 var server = new TcpListener(localAddr, port);
-                //Start listening for client requests
-                //server.Start();
                 
-                
+
                 //Enter the listening loop
                 while (true)
                 {
+                    //Start listening for client requests
                     server.Start();
                     Console.Write("Waiting for a connection...");
+                    
                     //Perform a blocking call to accept requests
                     var client = server.AcceptTcpClient();
                     Console.WriteLine("Houston, we have a connection!");
