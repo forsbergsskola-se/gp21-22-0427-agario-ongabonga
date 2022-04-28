@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-
+ 
 namespace OngaBonga
 {
     public class DumDum
@@ -10,17 +10,18 @@ namespace OngaBonga
         {
             //Set TcpListener to port Elite, local address to X
                 var port = 1337;
-                var localAddr = IPAddress.Parse("192.168.1.188");
+                var localAddr = IPAddress.Parse("127.0.0.1");
 
                 //TcpListener server = new TcpListener(port); - obsolete
                 var server = new TcpListener(localAddr, port);
                 //Start listening for client requests
-                server.Start();
+                //server.Start();
                 
                 
                 //Enter the listening loop
                 while (true)
                 {
+                    server.Start();
                     Console.Write("Waiting for a connection...");
                     //Perform a blocking call to accept requests
                     var client = server.AcceptTcpClient();
