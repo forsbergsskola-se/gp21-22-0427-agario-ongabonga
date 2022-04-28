@@ -11,7 +11,7 @@ public class RequestServerTime : MonoBehaviour
    
    public void SendRequest()
    {
-      var clientEndpoint = new IPEndPoint(IPAddress.Loopback,1337);
+      var clientEndpoint = new IPEndPoint(IPAddress.Loopback,1338);
       var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 1337);
       
       //Start a client on our end point - ?
@@ -21,7 +21,7 @@ public class RequestServerTime : MonoBehaviour
       tcpClient.Connect(serverEndpoint);
       
       var stream = tcpClient.GetStream();
-      Byte[] bytes = new Byte[256];
+      Byte[] bytes = new Byte[100];
       
       stream.Read(bytes, 0, bytes.Length);
       Console.Write("Simon says: "+Encoding.ASCII.GetString(bytes));
