@@ -6,7 +6,7 @@ namespace OngaBonga
 {
     public class DumDum
     {
-        static void Main() //JD - 192.168.1.188
+        static async Task Main() //JD - 192.168.1.188
         {
             //Set TcpListener to port Elite, local address to X
                 var port = 1337;
@@ -24,7 +24,7 @@ namespace OngaBonga
                     Console.WriteLine("Waiting for a connection...");
                     
                     //Perform a blocking call to accept requests
-                    var client = server.AcceptTcpClient();
+                    var client = await server.AcceptTcpClientAsync();
                     Console.WriteLine("Houston, we have a connection!");
 
                     var msg = DateTime.Now.ToString();
@@ -38,7 +38,7 @@ namespace OngaBonga
                     stream.Close();
                     client.Close();
                     //Stop listening for new clients
-                    server.Stop();
+                    //server.Stop();
                 }
         }
     }
