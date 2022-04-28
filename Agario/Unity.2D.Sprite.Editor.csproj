@@ -327,22 +327,22 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.27f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Plastic.Newtonsoft.Json">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Plastic.Antlr3.Runtime">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="unityplastic">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
  </Reference>
  <Reference Include="log4netPlastic">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.27f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

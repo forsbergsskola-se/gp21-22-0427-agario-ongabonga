@@ -17,6 +17,7 @@ namespace OngaBonga
                 //Start listening for client requests
                 server.Start();
                 
+                
                 //Enter the listening loop
                 while (true)
                 {

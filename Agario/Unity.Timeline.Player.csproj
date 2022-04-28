@@ -319,10 +319,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.27f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/School projects/Agario/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>D:/School projects/Agario/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/AOT/Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/School-Projects/gp21-22-0427-agario-ongabonga/Agario/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/AOT/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.27f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
