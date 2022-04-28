@@ -23,8 +23,8 @@ public class RequestServerTime : MonoBehaviour
       var stream = tcpClient.GetStream();
       Byte[] bytes = new Byte[100];
       
-      stream.Read(bytes, 0, bytes.Length);
-      Console.Write("Simon says: "+Encoding.ASCII.GetString(bytes));
+      var msg = stream.Read(bytes, 0, bytes.Length);
+      Debug.Log("Simon says: "+Encoding.ASCII.GetString(bytes));
       
       //Close client
       tcpClient.Close();
