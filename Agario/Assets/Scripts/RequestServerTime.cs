@@ -19,7 +19,7 @@ public class RequestServerTime : MonoBehaviour
         tcpClient.Connect(serverEndpoint);
       
         var stream = tcpClient.GetStream();
-        Byte[] bytes = new Byte[100];
+        var bytes = new byte[100];
       
         stream.Read(bytes, 0, bytes.Length);
         var msg = Encoding.ASCII.GetString(bytes);
@@ -27,6 +27,7 @@ public class RequestServerTime : MonoBehaviour
         Debug.Log($"Simon says! Time & Date iz: {msg}");
 
         //Close client
+        stream.Close();
         tcpClient.Close();
     }
 }

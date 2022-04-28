@@ -10,7 +10,7 @@ namespace OngaBonga
         {
             //Set TcpListener to port Elite, local address to X
                 var port = 1337;
-                var localAddr = IPAddress.Parse("127.0.0.1");
+                var localAddr = IPAddress.Loopback;
 
                 //TcpListener server = new TcpListener(port); - obsolete
                 var server = new TcpListener(localAddr, port);
@@ -26,8 +26,6 @@ namespace OngaBonga
                     //Perform a blocking call to accept requests
                     var client = server.AcceptTcpClient();
                     Console.WriteLine("Houston, we have a connection!");
-                    //Stop listening for new clients
-                    server.Stop();
 
                     var msg = DateTime.Now.ToString();
                     //Get a stream object for reading and writing
@@ -39,6 +37,8 @@ namespace OngaBonga
                     //Shutdown and end connection
                     stream.Close();
                     client.Close();
+                    //Stop listening for new clients
+                    server.Stop();
                 }
         }
     }
