@@ -21,7 +21,7 @@ namespace OngaBonga
                 {
                     //Start listening for client requests
                     server.Start();
-                    Console.Write("Waiting for a connection...");
+                    Console.WriteLine("Waiting for a connection...");
                     
                     //Perform a blocking call to accept requests
                     var client = server.AcceptTcpClient();
