@@ -1,79 +1,43 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 namespace OngaBonga
 {
     public class DumDum
     {
-        static void Main()
+        static void Main() //JD - 192.168.1.188
         {
-            TcpListener server = null;
-            try
-            {
-                //Set TcpListener to port Elite, local address to X
-                Int32 port = 1337;
-                IPAddress localAddr = IPAddress.Parse("127.0.0.1");
+            //Set TcpListener to port Elite, local address to X
+                var port = 1337;
+                var localAddr = IPAddress.Parse("192.168.1.188");
 
-                //TcpListener server = new TcpListener(port); - alternative
-                server = new TcpListener(localAddr, port);
-
+                //TcpListener server = new TcpListener(port); - obsolete
+                var server = new TcpListener(localAddr, port);
                 //Start listening for client requests
                 server.Start();
-
-                //Buffer for reading data
-                Byte[] bytes = new byte[256];
-                String data = null;
-
+                
                 //Enter the listening loop
                 while (true)
                 {
                     Console.Write("Waiting for a connection...");
-
                     //Perform a blocking call to accept requests
-                    // server.AcceptSocket() - potential alternative
-                    TcpClient client = server.AcceptTcpClient();
+                    var client = server.AcceptTcpClient();
                     Console.WriteLine("Houston, we have a connection!");
+                    //Stop listening for new clients
+                    server.Stop();
 
-                    data = null;
-
+                    var msg = DateTime.Now.ToString();
                     //Get a stream object for reading and writing
-                    NetworkStream stream = client.GetStream();
-
-                    int i;
-
-                    //Loop to receive all the data sent by the client.
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                    {
-                        //Translate data bytes to ASCII string
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine("Received: {0}", data);
-
-                        //Process the data sent by the client
-                        data = data.ToUpper();
-
-                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-
-                        //Send back a response
-                        stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine("Sent: {0}", data);
-                    }
-
+                    var stream = client.GetStream();
+                    
+                    stream.Write(Encoding.ASCII.GetBytes(msg));
+                    Console.WriteLine(msg);
+                    
                     //Shutdown and end connection
+                    stream.Close();
                     client.Close();
                 }
-            }
-            catch (SocketException e)
-            {
-                Console.WriteLine("Socket Exception: {0}", e);
-            }
-            finally
-            {
-                //Stop listening for new clients
-                server.Stop();
-            }
-
-            Console.WriteLine("\nHit enter to continue...");
-            Console.Read();
         }
     }
 }
