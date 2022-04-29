@@ -1,19 +1,18 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class ChatCommunicator : MonoBehaviour
-{
-    private TextMeshProUGUI chatOutput;
+public class ChatCommunicator : MonoBehaviour{
+    TMP_InputField chatInput;
+    TextMeshProUGUI chatOutput;
     private void Start()
     {
-        chatOutput = FindObjectOfType<TextMeshProUGUI>();
+        chatInput = FindObjectOfType<TMP_InputField>();
     }
     
-    public void SendMessageRequest()
+    public void SendChatMessage()
     {
         //TODO: Fix socketexception on multiple clicks/attempts/requests
         
@@ -22,7 +21,7 @@ public class ChatCommunicator : MonoBehaviour
 
         var udpClient = new UdpClient(clientEndpoint);
 
-        var msg = Encoding.ASCII.GetBytes(chatOutput.text);
+        var msg = Encoding.ASCII.GetBytes(chatInput.text);
         udpClient.Send(msg, msg.Length, serverEndpoint);
         
     }
