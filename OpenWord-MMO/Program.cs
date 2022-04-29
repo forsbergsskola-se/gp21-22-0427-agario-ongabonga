@@ -26,13 +26,14 @@ public static class Program
                 // can change the struct from within the function
                 var response = server.Receive(ref clientEndpoint);
                 
-                //recieve and validate the message
+                //receive and validate the message
                 var msg = Encoding.ASCII.GetString(response);
                 if (msg.Length <= 20 && !msg.Contains(' '))
                 {
                     //do the thing with the stuff in the something
                     Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
                     allMessages = $"{allMessages} {msg}";
+                    allMessages = allMessages.Trim();
                     buffer = Encoding.ASCII.GetBytes(allMessages);
                 }
                 else
