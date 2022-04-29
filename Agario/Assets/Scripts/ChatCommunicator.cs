@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -18,13 +15,8 @@ public class ChatCommunicator : MonoBehaviour
 
     public void SendMessageRequest()
     {
-        ConnecToUDPServer();
-    }
-
-    async Task ConnecToUDPServer()
-    {
         var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 13337);
-        var clientEndpoint = new IPEndPoint(IPAddress.Loopback, 666);
+        var clientEndpoint = new IPEndPoint(IPAddress.Loopback, 66669);
 
         var udpClient = new UdpClient(clientEndpoint);
 
