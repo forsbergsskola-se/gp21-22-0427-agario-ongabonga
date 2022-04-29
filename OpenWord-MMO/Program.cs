@@ -23,8 +23,24 @@ public static class Program
                 // A ref parameter means, that this function
                 // can change the struct from within the function
                 var response = server.Receive(ref clientEndpoint);
-                Console.WriteLine($"Packet received from: {clientEndpoint} saying: {Encoding.ASCII.GetString(response)}");
+                var buffer = new byte[100];
+                var msg = Encoding.ASCII.GetString(response);
+                if (msg.Length <= 20)
+                {
+                    //do the thing with the stuff in the something
+                    Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
+                    Encoding.ASCII.GetBytes(msg);
+                }
+                else
+                {
+                    //Fuck you for trying to cheat the system - send to asshat who doesn't get word limitations
+                    Console.WriteLine($"You invalid, fool! Get your shit straight. It's 20 character max and just the one word, which {msg} ain't");
+                    
+                } 
+                //Send stuff back, close shit up
+                server.Send(buffer, buffer.Length, clientEndpoint);
             }
+            server.Close();
         }
         catch (Exception e)
         {
