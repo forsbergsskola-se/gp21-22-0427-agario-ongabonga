@@ -12,6 +12,8 @@ public static class Program
 		
         // We open the Socket, so we can receive Packets
         var server = new UdpClient(serverEndpoint);
+        var buffer = new byte[100];
+        var allMessages = "";
         try
         {
             while (true) 
@@ -23,13 +25,15 @@ public static class Program
                 // A ref parameter means, that this function
                 // can change the struct from within the function
                 var response = server.Receive(ref clientEndpoint);
-                var buffer = new byte[100];
+                
+                //recieve and validate the message
                 var msg = Encoding.ASCII.GetString(response);
-                if (msg.Length <= 20 && !msg.Contains(" "))
+                if (msg.Length <= 20 && !msg.Contains(' '))
                 {
                     //do the thing with the stuff in the something
                     Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
-                    Encoding.ASCII.GetBytes(msg);
+                    allMessages = $"{allMessages} s{msg}";
+                    buffer = Encoding.ASCII.GetBytes(allMessages);
                 }
                 else
                 {
@@ -37,10 +41,10 @@ public static class Program
                     Console.WriteLine($"You invalid, fool! Get your shit straight. It's 20 character max and just the one word, which {msg} ain't");
                     
                 } 
+                
                 //Send stuff back, close shit up
                 server.Send(buffer, buffer.Length, clientEndpoint);
             }
-            server.Close();
         }
         catch (Exception e)
         {
