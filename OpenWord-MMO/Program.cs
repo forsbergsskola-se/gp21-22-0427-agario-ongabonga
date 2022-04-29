@@ -40,7 +40,7 @@ public static class Program
                     //- send to asshat who doesn't get word limitations back. We pity dat fool
                     Console.Write($"You invalid, fool! It's 20 character max and just the one word, which {msg} ain't");
                 }
-                //Send stuff back, close shit up
+                //Send stuff back
                 server.Send(buffer, buffer.Length, clientEndpoint);
             }
         }
