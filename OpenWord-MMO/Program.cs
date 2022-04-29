@@ -9,15 +9,16 @@ public static class Program
     static void Main(string[] arguments) 
     {
         var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 13337);
-		
         // We open the Socket, so we can receive Packets
         var server = new UdpClient(serverEndpoint);
-        var buffer = new byte[100];
-        var allMessages = "";
+        
         try
         {
             while (true) 
             {
+                var buffer = new byte[100];
+                var allMessages = "";
+                
                 // This struct will contain the info of the sender
                 // After calling Receive
                 IPEndPoint clientEndpoint = default;
@@ -31,7 +32,7 @@ public static class Program
                 if (msg.Length <= 20 && !msg.Contains(' '))
                 {
                     //do the thing with the stuff in the something
-                    Console.Write($"Packet received from: {clientEndpoint} saying: {msg}");
+                    Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
                     allMessages = $"{allMessages} {msg}";
                     allMessages = allMessages.Trim();
                     buffer = Encoding.ASCII.GetBytes(allMessages);
@@ -39,7 +40,7 @@ public static class Program
                 else
                 {
                     //- send to asshat who doesn't get word limitations back. We pity dat fool
-                    Console.Write($"You invalid, fool! It's 20 character max and just the one word, which {msg} ain't");
+                    Console.WriteLine($"You invalid, fool! It's 20 character max and just the one word, which {msg} ain't");
                 }
                 //Send stuff back
                 server.Send(buffer, buffer.Length, clientEndpoint);
