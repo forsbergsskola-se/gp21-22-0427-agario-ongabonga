@@ -25,7 +25,7 @@ public static class Program
                 var response = server.Receive(ref clientEndpoint);
                 var buffer = new byte[100];
                 var msg = Encoding.ASCII.GetString(response);
-                if (msg.Length <= 20)
+                if (msg.Length <= 20 && !msg.Contains(" "))
                 {
                     //do the thing with the stuff in the something
                     Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
