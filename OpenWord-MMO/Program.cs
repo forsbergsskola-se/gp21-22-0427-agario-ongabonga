@@ -11,14 +11,13 @@ public static class Program
         var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 13337);
         // We open the Socket, so we can receive Packets
         var server = new UdpClient(serverEndpoint);
+        var buffer = new byte[100];
+        var allMessages = "";
         
         try
         {
             while (true) 
             {
-                var buffer = new byte[100];
-                var allMessages = "";
-                
                 // This struct will contain the info of the sender
                 // After calling Receive
                 IPEndPoint clientEndpoint = default;
@@ -43,6 +42,7 @@ public static class Program
                     Console.WriteLine($"You invalid, fool! It's 20 character max and just the one word, which {msg} ain't");
                 }
                 //Send stuff back
+                Console.WriteLine(allMessages);
                 server.Send(buffer, buffer.Length, clientEndpoint);
             }
         }

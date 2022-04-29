@@ -24,7 +24,7 @@ public class ChatCommunicator : MonoBehaviour{
 
         var msg = Encoding.ASCII.GetBytes(chatInput.text);
         udpClient.Send(msg, msg.Length, serverEndpoint);
-        
+        ReceiveMessage();
     }
 
     public void ReceiveMessage()
