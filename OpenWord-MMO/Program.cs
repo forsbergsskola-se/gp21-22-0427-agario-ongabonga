@@ -31,18 +31,16 @@ public static class Program
                 if (msg.Length <= 20 && !msg.Contains(' '))
                 {
                     //do the thing with the stuff in the something
-                    Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
+                    Console.Write($"Packet received from: {clientEndpoint} saying: {msg}");
                     allMessages = $"{allMessages} {msg}";
                     allMessages = allMessages.Trim();
                     buffer = Encoding.ASCII.GetBytes(allMessages);
                 }
                 else
                 {
-                    //Fuck you for trying to cheat the system - send to asshat who doesn't get word limitations
-                    Console.WriteLine($"You invalid, fool! Get your shit straight. It's 20 character max and just the one word, which {msg} ain't");
-                    
-                } 
-                
+                    //- send to asshat who doesn't get word limitations back. We pity dat fool
+                    Console.Write($"You invalid, fool! It's 20 character max and just the one word, which {msg} ain't");
+                }
                 //Send stuff back, close shit up
                 server.Send(buffer, buffer.Length, clientEndpoint);
             }
