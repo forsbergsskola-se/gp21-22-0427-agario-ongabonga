@@ -6,16 +6,15 @@ using UnityEngine;
 
 public class ChatCommunicator : MonoBehaviour{
     TMP_InputField chatInput;
-    TMP_Text chatOutput;
+    [SerializeField] TMP_Text chatOutput;
     
     IPEndPoint serverEndpoint = new IPEndPoint(IPAddress.Loopback, 13337);
     static IPEndPoint clientEndpoint = new IPEndPoint(IPAddress.Loopback, 16666);
     UdpClient udpClient;
-    private void Start()
+    void Start()
     {
         udpClient = new UdpClient(clientEndpoint);
         chatInput = FindObjectOfType<TMP_InputField>();
-        chatOutput = FindObjectOfType<TMP_Text>();
     }
     
     public void SendChatMessage()
@@ -30,6 +29,7 @@ public class ChatCommunicator : MonoBehaviour{
     public void ReceiveMessage()
     {   
         var response = udpClient.Receive(ref serverEndpoint);
+        Debug.Log(Encoding.ASCII.GetString(response));
         chatOutput.text = Encoding.ASCII.GetString(response);
     }
 }
