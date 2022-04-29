@@ -32,7 +32,7 @@ public static class Program
                 {
                     //do the thing with the stuff in the something
                     Console.WriteLine($"Packet received from: {clientEndpoint} saying: {msg}");
-                    allMessages = $"{allMessages} s{msg}";
+                    allMessages = $"{allMessages} {msg}";
                     buffer = Encoding.ASCII.GetBytes(allMessages);
                 }
                 else
