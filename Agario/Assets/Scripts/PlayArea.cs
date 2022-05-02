@@ -2,7 +2,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class NewBehaviourScript : MonoBehaviour{
+public class PlayArea : MonoBehaviour{
     int fieldX = 100;
     int fieldY = 100;
     
@@ -13,10 +13,8 @@ public class NewBehaviourScript : MonoBehaviour{
         return clampedPos;
     }
 
-    public int[,] RandomSpawn(){ //TODO: make sure 2 players doesnt spawn atop of each other
-        var pos = new int [
-            Random.Range(0, 100)
-            ,Random.Range(0, 100)] ;
+    public Vector3 RandomSpawn(){ //TODO: make sure 2 players doesnt spawn atop of each other
+        var pos = new Vector3(Random.Range(0, 100), Random.Range(0, 100), 0);
         return pos;
     }
 }
