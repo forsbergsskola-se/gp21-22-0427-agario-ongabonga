@@ -32,7 +32,6 @@ public class ChatCommunicator : MonoBehaviour{
         try
         {
             //TODO: Fix socketexception on multiple clicks/attempts/requests
-
             var msg = Encoding.ASCII.GetBytes(chatInput.text);
             udpClient.Send(msg, msg.Length, serverEndpoint);
             ReceiveMessage();
@@ -40,6 +39,7 @@ public class ChatCommunicator : MonoBehaviour{
         catch (Exception e)
         {
             Console.WriteLine(e);
+            errorPanel.SetActive(true);
             throw;
         }
         
@@ -56,6 +56,7 @@ public class ChatCommunicator : MonoBehaviour{
         catch (Exception e)
         {
             Console.WriteLine(e);
+            errorPanel.SetActive(true);
             throw;
         }
         
