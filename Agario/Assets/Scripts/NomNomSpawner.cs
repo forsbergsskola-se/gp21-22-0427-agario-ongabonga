@@ -9,21 +9,41 @@ public class NomNomSpawner : MonoBehaviour
     private PlayArea area;
     [SerializeField] private GameObject NomNomablesprefab;
     private int NomNomablesCount;
+    private IEnumerator coroutine;
+    private bool hasSpawnedRecently = false;
     
     void Awake()
     {
         area = FindObjectOfType<PlayArea>();
     }
+
     private void FixedUpdate()
     {
-        if(NomNomablesCount < 50){
-            Invoke("SpawnNomNom", 3f);
+        if (!hasSpawnedRecently)
+        {
+            coroutine = SpawnNomNom(5.0f);
+            StartCoroutine(coroutine);
+           // hasSpawnedRecently = false;
         }
     }
 
-    void SpawnNomNom()
+    // private void FixedUpdate()
+    // {
+    //     if(NomNomablesCount < 50)
+    //     {
+    //         Invoke("SpawnNomNom", 5f);
+    //     }
+    // }
+
+    private IEnumerator SpawnNomNom(float waitTime)
     {
-        Instantiate(NomNomablesprefab, area.RandomSpawn(), quaternion.identity);
-        NomNomablesCount++;
+        if (NomNomablesCount < 20)
+        {
+            Instantiate(NomNomablesprefab, area.RandomSpawn(), quaternion.identity);
+            NomNomablesCount++;
+            hasSpawnedRecently = true;
+            yield return new WaitForSeconds(waitTime);
+            hasSpawnedRecently = false;
+        }
     }
 }
