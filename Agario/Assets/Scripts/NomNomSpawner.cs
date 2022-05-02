@@ -15,8 +15,7 @@ public class NomNomSpawner : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        while (NomNomablesCount < 50)
-        {
+        if(NomNomablesCount < 50){
             Invoke("SpawnNomNom", 3f);
         }
     }
