@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -19,17 +20,35 @@ public class ChatCommunicator : MonoBehaviour{
     
     public void SendChatMessage()
     {
-        //TODO: Fix socketexception on multiple clicks/attempts/requests
+        try
+        {
+            //TODO: Fix socketexception on multiple clicks/attempts/requests
 
-        var msg = Encoding.ASCII.GetBytes(chatInput.text);
-        udpClient.Send(msg, msg.Length, serverEndpoint);
-        ReceiveMessage();
+            var msg = Encoding.ASCII.GetBytes(chatInput.text);
+            udpClient.Send(msg, msg.Length, serverEndpoint);
+            ReceiveMessage();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
 
     public void ReceiveMessage()
-    {   
-        var response = udpClient.Receive(ref serverEndpoint);
-        Debug.Log(Encoding.ASCII.GetString(response));
-        chatOutput.text = Encoding.ASCII.GetString(response);
+    {
+        try
+        {
+            var response = udpClient.Receive(ref serverEndpoint);
+            Debug.Log(Encoding.ASCII.GetString(response));
+            chatOutput.text = Encoding.ASCII.GetString(response);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
 }
