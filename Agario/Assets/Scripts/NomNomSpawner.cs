@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class NomNomSpawner : MonoBehaviour
@@ -22,7 +23,7 @@ public class NomNomSpawner : MonoBehaviour
 
     void SpawnNomNom()
     {
-        Instantiate(NomNomablesprefab, area.RandomSpawn(), Quaternion.identity);
+        Instantiate(NomNomablesprefab, area.RandomSpawn(), quaternion.identity);
         NomNomablesCount++;
     }
 }
