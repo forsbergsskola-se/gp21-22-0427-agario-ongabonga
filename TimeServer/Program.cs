@@ -8,23 +8,18 @@ namespace OngaBonga
     {
         static async Task Main() //JD - 192.168.1.188
         {
-            //Set TcpListener to port Elite, local address to X
-                var port = 1337;
-                var localAddr = IPAddress.Loopback;
-
-                //TcpListener server = new TcpListener(port); - obsolete
-                var server = new TcpListener(localAddr, port);
-                
+            //TcpListener server = new TcpListener(port); - obsolete
+                var tcpListener = new TcpListener(IPAddress.Loopback, 1337);
 
                 //Enter the listening loop
                 while (true)
                 {
                     //Start listening for client requests
-                    server.Start();
+                    tcpListener.Start();
                     Console.WriteLine("Waiting for a connection...");
                     
                     //Perform a blocking call to accept requests
-                    var client = await server.AcceptTcpClientAsync();
+                    var client = await tcpListener.AcceptTcpClientAsync();
                     Console.WriteLine("Houston, we have a connection!");
 
                     var msg = DateTime.Now.ToString();
