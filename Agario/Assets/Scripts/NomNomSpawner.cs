@@ -8,7 +8,7 @@ public class NomNomSpawner : MonoBehaviour
 {
     PlayArea area;
     [SerializeField] GameObject NomNomablesprefab;
-    int nomNomablesCount;
+    public int nomNomablesCount;
     IEnumerator coroutine;
     bool hasSpawnedRecently;
     
