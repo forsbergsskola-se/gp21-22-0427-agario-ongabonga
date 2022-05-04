@@ -14,7 +14,7 @@ public class PlayArea : MonoBehaviour{
     }
 
     public Vector3 RandomSpawn(){ //TODO: make sure 2 players doesnt spawn atop of each other
-        var pos = new Vector3(Random.Range(0, 100), Random.Range(0, 100), 0);
+        var pos = new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), 0);
         return pos;
     }
 }
