@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     void Start(){
         scoreText = GameObject.FindWithTag("Score");
         gameOverCanvas = GameObject.FindWithTag("gameOver");
-        gameOverCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);  //TODO: the playerdummy does the deactivation for both players, so real player cant find
     }
 
 
@@ -26,18 +26,22 @@ public class Player : MonoBehaviour
     {
         myCollider = GetComponent<Collider2D>();
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
-            var otherScore = other.gameObject.GetComponent<Player>().score;
-            score += otherScore;
+            var otherPlayer = other.gameObject.GetComponent<Player>();
+            score += otherPlayer.score;
             other.gameObject.GetComponent<Player>().score = 0;
+        }
+
+        if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max)){
+            ActivateGameOverScreen();
         }
     }
 
     void Update(){
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
+    }
 
-        if (Input.GetKeyDown(KeyCode.Q)){
-            gameOverCanvas.SetActive(true);
-        }
+    void ActivateGameOverScreen(){
+        gameOverCanvas.SetActive(true);
     }
 }
 
