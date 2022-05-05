@@ -1,22 +1,26 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public int score;
     float sizeManipulator;
-    private Collider2D myCollider;
-    
-    
+    Collider2D myCollider;
+    GameObject scoreText;
+
+    void Start(){
+        scoreText = GameObject.FindWithTag("Score");
+    }
+
+
     public void ControlSize()
     {
         sizeManipulator = 1 + score * 0.1f;
         GetComponentInParent<Transform>().localScale = new Vector3(sizeManipulator, sizeManipulator, 1);
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         myCollider = GetComponent<Collider2D>();
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max))
@@ -24,6 +28,10 @@ public class Player : MonoBehaviour
             //TODO: NOM NOM. But first, LUNCH NOM NOM
             Debug.Log("Oh No, tiny player got eaten :O!");
         }
+    }
+
+    void Update(){
+        scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
     }
 }
 
