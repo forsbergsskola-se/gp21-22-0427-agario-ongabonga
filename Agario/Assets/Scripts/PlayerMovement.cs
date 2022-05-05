@@ -4,9 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
    Camera playerCamera;
    Vector3 mousePosition;
-   float lerpTime = 0.1f;
+   float lerpTime = 0.01f;
    //TODO: Zoom out camera on size growth
-  [SerializeField] private Vector3 offset = new Vector3(0, 0, -10);
+  [SerializeField] Vector3 offset = new Vector3(0, 0, -10);
 
   private void Start()
    {
