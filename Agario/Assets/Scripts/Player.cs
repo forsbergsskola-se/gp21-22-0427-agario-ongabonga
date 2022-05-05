@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,9 +9,12 @@ public class Player : MonoBehaviour
     float sizeManipulator;
     Collider2D myCollider;
     GameObject scoreText;
+    GameObject gameOverCanvas;
 
     void Start(){
         scoreText = GameObject.FindWithTag("Score");
+        gameOverCanvas = GameObject.FindWithTag("gameOver");
+        gameOverCanvas.SetActive(false);
     }
 
 
@@ -32,6 +36,10 @@ public class Player : MonoBehaviour
 
     void Update(){
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
+
+        if (Input.GetKeyDown(KeyCode.Q)){
+            gameOverCanvas.SetActive(true);
+        }
     }
 }
 
