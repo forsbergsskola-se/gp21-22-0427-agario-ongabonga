@@ -27,10 +27,10 @@ public class Player : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         myCollider = GetComponent<Collider2D>();
-        if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max))
-        {
-            //TODO: NOM NOM. But first, LUNCH NOM NOM
-            Debug.Log("Oh No, tiny player got eaten :O!");
+        if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
+            var otherScore = other.gameObject.GetComponent<Player>().score;
+            score += otherScore;
+            other.gameObject.GetComponent<Player>().score = 0;
         }
     }
 
