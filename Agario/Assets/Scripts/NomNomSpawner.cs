@@ -21,14 +21,14 @@ public class NomNomSpawner : MonoBehaviour
     {
         if (!hasSpawnedRecently)
         {
-            coroutine = SpawnNomNom(5.0f);
+            coroutine = SpawnNomNom(1.0f);
             StartCoroutine(coroutine);
         }
     }
 
     IEnumerator SpawnNomNom(float waitTime)
     {
-        if (nomNomablesCount < 20)
+        if (nomNomablesCount < 30)
         {
             Instantiate(NomNomablesprefab, area.RandomSpawn(), quaternion.identity);
             nomNomablesCount++;

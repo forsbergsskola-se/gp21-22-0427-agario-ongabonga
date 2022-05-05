@@ -4,22 +4,26 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour{
+public class PlayerSpawner : MonoBehaviour{
    [SerializeField] GameObject playerPrefab;
    PlayArea area;
    
    bool isAlreadySpawned;
 
-   void Awake(){
+   void Awake()
+   {
       area = FindObjectOfType<PlayArea>();
    }
 
-   void Update(){
+   void Update()
+   {
       SpawnPlayer();
    }
 
-   void SpawnPlayer(){
-      if (Input.GetKey(KeyCode.Space) && !isAlreadySpawned){
+   void SpawnPlayer()
+   {
+      if (Input.GetKey(KeyCode.Space) && !isAlreadySpawned)
+      {
          Instantiate(playerPrefab, area.RandomSpawn(), quaternion.identity);
          isAlreadySpawned = true;
       }

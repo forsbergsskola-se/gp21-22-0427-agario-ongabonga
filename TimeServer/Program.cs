@@ -10,6 +10,7 @@ namespace OngaBonga
         {
             //TcpListener server = new TcpListener(port); - obsolete
                 var tcpListener = new TcpListener(IPAddress.Loopback, 1337);
+                
 
                 //Enter the listening loop
                 while (true)
@@ -26,6 +27,7 @@ namespace OngaBonga
                     //Get a stream object for reading and writing
                     var stream = client.GetStream();
                     
+                    //var streamReader = new StreamReader(stream);
                     stream.Write(Encoding.ASCII.GetBytes(msg));
                     Console.WriteLine(msg);
                     
