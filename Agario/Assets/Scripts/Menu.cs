@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Agario");
     }
     public void Disconnect(){
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("AgarioMainMenu");
     }
     public void QuitGame(){ 
         Application.Quit();

@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class AgarioClient : MonoBehaviour
 {
-  private static AgarioClient _Instance;
-  private StreamWriter streamWriter;
-  private StreamReader streamReader;
+  static AgarioClient _Instance;
+  StreamWriter streamWriter;
+  StreamReader streamReader;
 
   public static AgarioClient Instance
   {
@@ -22,10 +22,10 @@ public class AgarioClient : MonoBehaviour
 
   public void Init(TcpClient client, string strongName)
   {
-    this.Client = client;
-    this.playerName = strongName;
-    this.streamWriter = new StreamWriter(client.GetStream());
-    this.streamReader = new StreamReader(client.GetStream());
+    Client = client;
+    playerName = strongName;
+    streamWriter = new StreamWriter(client.GetStream());
+    streamReader = new StreamReader(client.GetStream());
     SendMessage(new LogInMessage
     {
       strongName = playerName

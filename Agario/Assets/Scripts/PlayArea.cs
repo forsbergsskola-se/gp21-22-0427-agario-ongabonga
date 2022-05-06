@@ -7,8 +7,8 @@ public class PlayArea : MonoBehaviour{
     int fieldY = 100;
     
     public int[,] ClampPositions(int x,int y){
-        var newX = math.clamp(x,0,100);
-        var newY = math.clamp(y,0,100);
+        var newX = math.clamp(x,0,fieldX);
+        var newY = math.clamp(y,0,fieldY);
         var clampedPos = new int[newX, newY];
         return clampedPos;
     }
