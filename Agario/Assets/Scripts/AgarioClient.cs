@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
 using Messages;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AgarioClient : MonoBehaviour{
   public event Action<MatchInfoMessage> matchInfoMessageRecieved; 
