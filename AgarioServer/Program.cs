@@ -24,15 +24,14 @@ public static class Program
             if (match == null)
             {
                 Console.WriteLine("Onga here! Awaiting arrival of Bonga");
-                match = new AgarioMatch
-                {
-                    Onga = tcpClient
-                };
+                match = new AgarioMatch();
+                match.InitOnga(tcpClient);
+
             }
             else
             {
                 Console.WriteLine("Onga here first now Bonga here 2. Time for OngaBonga");
-                match.Bonga = tcpClient;
+                match.InitBonga(tcpClient);
                 new Thread(match.Start).Start();
                 match = null;
             }
