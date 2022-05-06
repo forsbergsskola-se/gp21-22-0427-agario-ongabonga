@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
+using System.Threading;
 using Messages;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AgarioClient : MonoBehaviour
-{
+public class AgarioClient : MonoBehaviour{
+  public event Action<MatchInfoMessage> matchInfoMessageRecieved; 
   static AgarioClient _Instance;
   StreamWriter streamWriter;
   StreamReader streamReader;
@@ -26,6 +29,7 @@ public class AgarioClient : MonoBehaviour
     playerName = strongName;
     streamWriter = new StreamWriter(client.GetStream());
     streamReader = new StreamReader(client.GetStream());
+    new Thread(ReadPlayer).Start();
     SendMessage(new LogInMessage
     {
       strongName = playerName
@@ -39,5 +43,15 @@ public class AgarioClient : MonoBehaviour
   {
     streamWriter.WriteLine(JsonUtility.ToJson(message));
     streamWriter.Flush();
+  }
+
+  void ReadPlayer(){
+    var streamReader = new StreamReader(Client.GetStream());
+    while (true){
+      string? json = this.streamReader.ReadLine();
+      var matchInfo = JsonUtility.FromJson<MatchInfoMessage>(json);
+      Debug.Log(json);
+      matchInfoMessageRecieved?.Invoke(matchInfo);
+    }
   }
 }

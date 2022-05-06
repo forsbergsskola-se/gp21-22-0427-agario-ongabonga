@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
-    public InputField playerNameInput;
+    [SerializeField] TMP_InputField playerNameInput;
     
     //TODO: Make async for expanding playerbase beyond Onga and the BOnga
     public void GameStart()
