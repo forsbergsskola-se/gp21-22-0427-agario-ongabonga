@@ -9,7 +9,7 @@ public class ChatCommunicator : MonoBehaviour{
     TMP_InputField chatInput;
     [SerializeField] private GameObject errorPanel;
     [SerializeField] TMP_Text chatOutput;
-    
+
     IPEndPoint serverEndpoint = new IPEndPoint(IPAddress.Loopback, 13337);
     static IPEndPoint clientEndpoint = new IPEndPoint(IPAddress.Loopback, 16666);
     UdpClient udpClient;
