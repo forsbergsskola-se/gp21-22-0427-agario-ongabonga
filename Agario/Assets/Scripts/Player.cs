@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     GameObject scoreText;
     GameObject gameOverCanvas;
 
-    void Start(){
+    void Start()
+    {
         scoreText = GameObject.FindWithTag("Score");
         gameOverCanvas = GameObject.FindWithTag("gameOver");
         gameOverCanvas.SetActive(false);  //TODO: the playerdummy does the deactivation for both players, so real player cant find
@@ -25,22 +26,26 @@ public class Player : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         myCollider = GetComponent<Collider2D>();
-        if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
+        if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max))
+        {
             var otherPlayer = other.gameObject.GetComponent<Player>();
             score += otherPlayer.score;
             other.gameObject.GetComponent<Player>().score = 0;
         }
 
-        if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max)){
+        if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max))
+        {
             ActivateGameOverScreen();
         }
     }
 
-    void Update(){
+    void Update()
+    {
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
     }
 
-    void ActivateGameOverScreen(){
+    void ActivateGameOverScreen()
+    {
         gameOverCanvas.SetActive(true);
     }
 }
