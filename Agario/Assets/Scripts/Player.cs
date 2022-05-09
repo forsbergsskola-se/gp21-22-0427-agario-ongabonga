@@ -6,13 +6,12 @@ public class Player : MonoBehaviour
     public int score;
     float sizeManipulator;
     Collider2D myCollider;
-    GameObject scoreText;
-    GameObject gameOverCanvas;
+    public GameObject scoreText;
+    public GameObject gameOverCanvas;
 
     void Start()
     {
         scoreText = GameObject.FindWithTag("Score");
-        gameOverCanvas = GameObject.FindWithTag("gameOver");
         gameOverCanvas.SetActive(false);  //TODO: the playerdummy does the deactivation for both players, so real player cant find
     }
 
@@ -26,8 +25,8 @@ public class Player : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         myCollider = GetComponent<Collider2D>();
-        if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max))
-        {
+        if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
+            Debug.Log("nomnom");
             var otherPlayer = other.gameObject.GetComponent<Player>();
             score += otherPlayer.score;
             other.gameObject.GetComponent<Player>().score = 0;
@@ -35,6 +34,7 @@ public class Player : MonoBehaviour
 
         if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max))
         {
+            Debug.Log("wtf isnt this working");
             ActivateGameOverScreen();
         }
     }

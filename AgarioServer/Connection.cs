@@ -17,8 +17,8 @@ public class Connection{
     public Connection(TcpClient client, AgarioMatch match, PlayerInfo playerInfo){
         _match = match;
         _playerInfo = playerInfo;
-        this.Client = client;
-        this._streamWriter = new StreamWriter(client.GetStream());
+        Client = client;
+        _streamWriter = new StreamWriter(client.GetStream());
         new Thread(ReadPlayer).Start();
     }
 

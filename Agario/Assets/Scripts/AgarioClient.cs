@@ -5,11 +5,10 @@ using System.Threading;
 using Messages;
 using UnityEngine;
 
-public class AgarioClient : MonoBehaviour{
-  public event Action<MatchInfoMessage> matchInfoMessageRecieved; 
+public class AgarioClient {
+  public event Action<MatchInfoMessage> MatchInfoMessageRecieved; 
   static AgarioClient _Instance;
   StreamWriter streamWriter;
-  StreamReader streamReader;
 
   public static AgarioClient Instance
   {
@@ -25,7 +24,6 @@ public class AgarioClient : MonoBehaviour{
     Client = client;
     playerName = strongName;
     streamWriter = new StreamWriter(client.GetStream());
-    streamReader = new StreamReader(client.GetStream());
     new Thread(ReadPlayer).Start();
     SendMessage(new LogInMessage
     {
@@ -45,10 +43,11 @@ public class AgarioClient : MonoBehaviour{
   void ReadPlayer(){
     var streamReader = new StreamReader(Client.GetStream());
     while (true){
-      string? json = this.streamReader.ReadLine();
+      string? json = streamReader.ReadLine();
       var matchInfo = JsonUtility.FromJson<MatchInfoMessage>(json);
       Debug.Log(json);
-      matchInfoMessageRecieved?.Invoke(matchInfo);
+      //TODO: matchinfo is null? from json not working as intended or something else?
+      MatchInfoMessageRecieved.Invoke(matchInfo);
     }
   }
 }
