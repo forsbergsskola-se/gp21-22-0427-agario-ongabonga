@@ -47,7 +47,7 @@ public class AgarioClient {
       var matchInfo = JsonUtility.FromJson<MatchInfoMessage>(json);
       Debug.Log(json);
       //TODO: matchinfo is null? from json not working as intended or something else?
-      MatchInfoMessageRecieved.Invoke(matchInfo);
+      MatchInfoMessageRecieved?.Invoke(matchInfo);
     }
   }
 }
