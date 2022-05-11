@@ -16,7 +16,6 @@ public class StartGame : MonoBehaviour
     public void GameStart()
     {
         var client = new TcpClient();
-        //TODO: Using loopback temporarily, will need server host to add later?
         client.Connect(IPAddress.Loopback, 1337);
         var connection = AgarioClient.Instance;
         connection.Init(client, playerNameInput.text);
@@ -36,6 +35,4 @@ public class StartGame : MonoBehaviour
         _started = obj.matchInfo.started;
     }
 
-    //TODO: Make async for expanding playerbase beyond Onga and BOnga
-    
 }
