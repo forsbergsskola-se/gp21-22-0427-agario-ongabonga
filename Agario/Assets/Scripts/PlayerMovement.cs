@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
    void FixedUpdate()
    {
-      playerCamera.transform.position = this.transform.position + offset;
+      playerCamera.transform.position = transform.position + offset;
       mousePosition = Input.mousePosition;
       mousePosition = playerCamera.ScreenToWorldPoint(mousePosition);
       transform.position = Vector2.Lerp(transform.position, mousePosition, lerpTime);
@@ -28,6 +28,6 @@ public class PlayerMovement : MonoBehaviour
       var yPos = transform.position.y;
      xPos = Mathf.Clamp(xPos, -50, 50);
      yPos = Mathf.Clamp(yPos, -50, 50);
-     transform.position = new Vector3(xPos, yPos);
+     transform.position = new Vector3(xPos, yPos,1);
    }
 }

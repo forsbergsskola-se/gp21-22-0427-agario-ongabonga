@@ -33,10 +33,6 @@ public class Player : MonoBehaviour
             score += otherPlayer.score;
             other.gameObject.GetComponent<Player>().score = 0;
         }
-        else{
-            Debug.Log(myCollider.bounds.size);
-            Debug.Log(other.bounds.size);
-        }
         if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max))
         {
             Debug.Log("wtf isnt this working");
