@@ -5,7 +5,8 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-public class ChatCommunicator : MonoBehaviour{
+public class ChatCommunicator : MonoBehaviour
+{
     TMP_InputField chatInput;
     [SerializeField] private GameObject errorPanel;
     [SerializeField] TMP_Text chatOutput;

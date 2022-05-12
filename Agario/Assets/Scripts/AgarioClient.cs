@@ -5,7 +5,8 @@ using System.Threading;
 using Messages;
 using UnityEngine;
 
-public class AgarioClient {
+public class AgarioClient 
+{
   public event Action<MatchInfoMessage> MatchInfoMessageRecieved; 
   static AgarioClient _Instance;
   StreamWriter streamWriter;
