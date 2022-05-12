@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     {
         Debug.Log("im colliding");
         myCollider = GetComponent<Collider2D>();
-        //maybe instead compare radius and see if overlapping with radius??
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
             Debug.Log("nomnom");
             var otherPlayer = other.gameObject.GetComponent<Player>();
