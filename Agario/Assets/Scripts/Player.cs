@@ -24,14 +24,19 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        Debug.Log("im colliding");
         myCollider = GetComponent<Collider2D>();
+        //maybe instead compare radius and see if overlapping with radius??
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
             Debug.Log("nomnom");
             var otherPlayer = other.gameObject.GetComponent<Player>();
             score += otherPlayer.score;
             other.gameObject.GetComponent<Player>().score = 0;
         }
-
+        else{
+            Debug.Log(myCollider.bounds.size);
+            Debug.Log(other.bounds.size);
+        }
         if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max))
         {
             Debug.Log("wtf isnt this working");
