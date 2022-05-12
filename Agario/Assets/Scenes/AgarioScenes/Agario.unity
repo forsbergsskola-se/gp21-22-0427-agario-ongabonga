@@ -380,6 +380,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 444638528}
+    - target: {fileID: 2703976226977639393, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3691392334476406968, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -390,6 +394,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3691392334476406968, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847634082955799072, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665968344539780697, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
+      propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930119882517034059, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
