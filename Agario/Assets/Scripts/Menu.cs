@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
 
-    public void StartGame(){ //start and restart game!
+    public void RestartGame(){ 
         SceneManager.LoadScene("Agario");
     }
     public void Disconnect(){

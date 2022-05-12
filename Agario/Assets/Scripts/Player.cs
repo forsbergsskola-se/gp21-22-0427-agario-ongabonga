@@ -27,14 +27,12 @@ public class Player : MonoBehaviour
         Debug.Log("im colliding");
         myCollider = GetComponent<Collider2D>();
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
-            Debug.Log("nomnom");
             var otherPlayer = other.gameObject.GetComponent<Player>();
             score += otherPlayer.score;
             other.gameObject.GetComponent<Player>().score = 0;
         }
         if (other.bounds.Contains(myCollider.bounds.min)&& other.bounds.Contains(myCollider.bounds.max))
         {
-            Debug.Log("wtf isnt this working");
             ActivateGameOverScreen();
         }
     }
@@ -47,6 +45,8 @@ public class Player : MonoBehaviour
     void ActivateGameOverScreen()
     {
         gameOverCanvas.SetActive(true);
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        
     }
 }
 
