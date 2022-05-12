@@ -16,7 +16,8 @@ public class RequestServerTime : MonoBehaviour
         timeOutput = FindObjectOfType<TextMeshProUGUI>();
     }
 
-    public void SendRequest(){
+    public void SendRequest()
+    {
         ConnectToServer();
     }
 
