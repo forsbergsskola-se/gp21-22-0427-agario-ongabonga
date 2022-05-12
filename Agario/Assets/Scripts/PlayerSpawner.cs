@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Messages;
 using Unity.Mathematics;
 using UnityEngine;
@@ -8,27 +6,24 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour{
    [SerializeField] GameObject playerPrefab;
    PlayArea area;
+   MatchInfo _matchInfo = new MatchInfo();
    
    bool isAlreadySpawned;
 
    void Awake()
    {
       area = FindObjectOfType<PlayArea>();
+      AgarioClient.Instance.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
    }
 
-   void Update()
-   {
-      SpawnPlayer();
+   void OnMatchInfoMessageRecieved(MatchInfoMessage obj){
+      _matchInfo = obj.matchInfo;
    }
 
-   void SpawnPlayer()
-   {
-      if (Input.GetKey(KeyCode.Space) && !isAlreadySpawned)
-      {
+   void Update(){
+      if (_matchInfo.started && !isAlreadySpawned){
          Instantiate(playerPrefab, area.RandomSpawn(), quaternion.identity);
          isAlreadySpawned = true;
       }
    }
-   
-   
 }
