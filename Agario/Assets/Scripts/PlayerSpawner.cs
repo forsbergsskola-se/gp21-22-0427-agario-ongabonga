@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour{
    [SerializeField] GameObject playerPrefab;
    PlayArea area;
-   MatchInfo _matchInfo = new();
+   MatchInfo _matchInfo = new MatchInfo();
    
    bool isAlreadySpawned;
 
