@@ -1,5 +1,6 @@
 using System;
 using Messages;
+using Model;
 using Unity.Mathematics;
 using UnityEngine;
 
