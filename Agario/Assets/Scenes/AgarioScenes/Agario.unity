@@ -476,6 +476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDummy
       objectReference: {fileID: 0}
+    - target: {fileID: 7930119882517034062, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7930119882517034061, guid: dd54120c15439534989d2e4af57a52e1, type: 3}
     - {fileID: -778880438904897171, guid: dd54120c15439534989d2e4af57a52e1, type: 3}

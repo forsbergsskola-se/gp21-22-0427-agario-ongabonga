@@ -9,6 +9,7 @@ public class MatchInfo
 
 public class PlayerInfo
 {
+    //TODO: add player vector3 position to the playerInfo? so server knows where players are
     public string name;
     public int score;
     public bool ready;
