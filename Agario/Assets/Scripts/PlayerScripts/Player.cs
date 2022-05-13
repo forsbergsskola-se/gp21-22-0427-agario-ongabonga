@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
-        AgarioClient.Instance.SendMessage(new PlayerInfoMessage{playerInfo = {name = name, position = transform.position, ready = true,score = score}});
+        ConnectionSingleton.Instance.AgarioClient.SendMessage(new PlayerInfoMessage{playerInfo = {name = name, ready = true,score = score}});
     }
 
     void ActivateGameOverScreen()
