@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Messages;
 using Model;
 using UnityEngine;
@@ -29,6 +26,8 @@ public class ServerPlayer : MonoBehaviour{
         AgarioClient.Instance.MatchInfoMessageRecieved -= OnMatchInfoMessageRecieved;
     }
 
+    
+    //TODO: this is never called? its not being invoked currently?
     void OnMatchInfoMessageRecieved(MatchInfoMessage obj){
         playerInfo = obj.matchInfo.bonga;
         name = playerInfo.name;
@@ -38,6 +37,8 @@ public class ServerPlayer : MonoBehaviour{
     void Update(){
         if (playerInfo.ready){
             score = playerInfo.score;
+            transform.position = playerInfo.position;
         }
     }
+    
 }

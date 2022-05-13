@@ -47,6 +47,7 @@ public class AgarioClient
       string? json = streamReader.ReadLine();
       var matchInfo = JsonUtility.FromJson<MatchInfoMessage>(json);
       matchInfo.matchInfo.started = true;
+      ///TODO: should we have another event that is invoked repetedly
       MatchInfoMessageRecieved?.Invoke(matchInfo);
     }
   }

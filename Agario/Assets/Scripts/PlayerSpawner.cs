@@ -25,8 +25,6 @@ public class PlayerSpawner : MonoBehaviour{
    void Update(){
       if (_matchInfo.started && !isAlreadySpawned){
          //TODO: make this spawn an instance of the server player not only local player! more connections means more players!
-         
-         //TODO: there should be a difference between the client-player and other players spawned.
          Instantiate(playerPrefab, area.RandomSpawn(), quaternion.identity);
          isAlreadySpawned = true;
       }
