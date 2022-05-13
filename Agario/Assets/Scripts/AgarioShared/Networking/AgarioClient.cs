@@ -47,7 +47,8 @@ namespace AgarioShared.AgarioShared.Networking
     void ReadPlayer()
     {
       var streamReader = new StreamReader(Client.GetStream());
-      while (true){
+      while (true)
+      {
         string? json = streamReader.ReadLine();
         var matchInfo = _json.Deserialize<MatchInfoMessage>(json);
         matchInfo.matchInfo.started = true;
