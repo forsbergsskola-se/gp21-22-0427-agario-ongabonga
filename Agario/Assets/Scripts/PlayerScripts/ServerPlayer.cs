@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Messages;
-using Model;
+using AgarioShared.AgarioShared.Messages;
+using AgarioShared.AgarioShared.Model;
+using AgarioShared.AgarioShared.Networking;
 using UnityEngine;
 
 public class ServerPlayer : MonoBehaviour{
@@ -22,11 +23,11 @@ public class ServerPlayer : MonoBehaviour{
     }
     void Awake()
     {
-        AgarioClient.Instance.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
+        ConnectionSingleton.Instance.AgarioClient.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
     }
 
     void OnDestroy(){
-        AgarioClient.Instance.MatchInfoMessageRecieved -= OnMatchInfoMessageRecieved;
+        ConnectionSingleton.Instance.AgarioClient.MatchInfoMessageRecieved -= OnMatchInfoMessageRecieved;
     }
 
     void OnMatchInfoMessageRecieved(MatchInfoMessage obj){

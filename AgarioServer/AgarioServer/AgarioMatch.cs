@@ -1,21 +1,22 @@
 using System.Net.Sockets;
-using AgarioServer.Messages;
+using AgarioShared.AgarioShared.Messages;
+using AgarioShared.AgarioShared.Model;
 
-namespace AgarioServer;
+namespace AgarioServer.Networking;
 
 public class AgarioMatch
 {
-   Connection? Onga{ get; set; }
-   Connection? Bonga{ get; set; }
-   public MatchInfo matchInfo = new MatchInfo();
+   AgarioClient? Onga{ get; set; }
+   AgarioClient? Bonga{ get; set; }
+   private readonly MatchInfo matchInfo = new MatchInfo();
 
    public void InitOnga(TcpClient client)
    {
-      Onga = new Connection(client, this, matchInfo.Onga);
+      Onga = new AgarioClient(client, this, matchInfo.onga);
    }
    public void InitBonga(TcpClient client)
    {
-      Bonga = new Connection(client, this, matchInfo.Bonga);
+      Bonga = new AgarioClient(client, this, matchInfo.bonga);
    }
 
    public void DistributeMatchInfo()
@@ -33,7 +34,7 @@ public class AgarioMatch
       while (true){
          if (!matchInfo.started)
          {
-            if (matchInfo.Onga.ready && matchInfo.Bonga.ready)
+            if (matchInfo.onga.ready && matchInfo.bonga.ready)
             {
                Console.WriteLine("Start game!");
                matchInfo.started = true;

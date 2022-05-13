@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model
+namespace AgarioShared.AgarioShared.Model
 {
     [Serializable]
     public class MatchInfo

@@ -1,38 +1,47 @@
 using System.Net;
 using System.Net.Sockets;
-using Messages;
+using AgarioShared.AgarioShared.Messages;
+using AgarioShared.AgarioShared.Networking;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartGame : MonoBehaviour
+namespace AgarioShared
 {
-    [SerializeField] TMP_InputField playerNameInput;
-    bool _started;
+    public class StartGame : MonoBehaviour
+    {
+        [SerializeField] TMP_InputField playerNameInput;
+        bool _started;
 
-    void Awake(){
-        AgarioClient.Instance.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
-    }
-    public void GameStart()
-    {
-        var client = new TcpClient();
-        client.Connect(IPAddress.Loopback, 1337);
-        var connection = AgarioClient.Instance;
-        connection.Init(client, playerNameInput.text);
-    }
-    void Update()
-    {
-        if (_started){
-            SceneManager.LoadScene("Agario");
+        void Awake()
+        {
+            ConnectionSingleton.Instance.AgarioClient.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
         }
-    }
+        public void GameStart()
+        {
+            var client = new TcpClient();
+            client.Connect(IPAddress.Loopback, 1337);
+            var connection = ConnectionSingleton.Instance.AgarioClient;
+            connection.Init(client, playerNameInput.text);
+        }
+        void Update()
+        {
+            if (_started)
+            {
+                SceneManager.LoadScene("Agario");
+            }
+        }
 
-    void OnDestroy(){
-        AgarioClient.Instance.MatchInfoMessageRecieved -= OnMatchInfoMessageRecieved;
-    }
+        void OnDestroy()
+        {
+            ConnectionSingleton.Instance.AgarioClient.MatchInfoMessageRecieved -= OnMatchInfoMessageRecieved;
+        }
 
-    void OnMatchInfoMessageRecieved(MatchInfoMessage obj){
-        _started = obj.matchInfo.started;
-    }
+        void OnMatchInfoMessageRecieved(MatchInfoMessage obj)
+        {
+            _started = obj.matchInfo.started;
+        }
 
+    }
 }
+

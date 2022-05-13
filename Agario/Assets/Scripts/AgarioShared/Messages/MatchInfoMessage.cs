@@ -1,7 +1,7 @@
 ﻿using System;
-using Model;
+using AgarioShared.AgarioShared.Model;
 
-namespace Messages
+namespace AgarioShared.AgarioShared.Messages
 {
     [Serializable]
     public class MatchInfoMessage

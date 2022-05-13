@@ -1,5 +1,6 @@
-using Messages;
-using Model;
+using AgarioShared.AgarioShared.Messages;
+using AgarioShared.AgarioShared.Model;
+using AgarioShared.AgarioShared.Networking;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public class PlayerSpawner : MonoBehaviour{
    void Awake()
    {
       area = FindObjectOfType<PlayArea>();
-      AgarioClient.Instance.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
+      ConnectionSingleton.Instance.AgarioClient.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
    }
 
    void OnMatchInfoMessageRecieved(MatchInfoMessage obj){

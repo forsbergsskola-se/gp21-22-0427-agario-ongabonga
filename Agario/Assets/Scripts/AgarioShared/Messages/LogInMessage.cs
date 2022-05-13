@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Messages
+﻿namespace AgarioShared.AgarioShared.Messages
 {
     public class LogInMessage
     {
