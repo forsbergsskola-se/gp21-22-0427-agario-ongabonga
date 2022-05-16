@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public GameObject scoreText;
     public GameObject gameOverCanvas;
     PlayerInfo playerInfo;
+    Vector3 positionInfo;
 
     void Start()
     {
@@ -43,10 +44,10 @@ public class Player : MonoBehaviour
     }
 
     void Update(){
+        //TODO: send this to the server and let it interpretate
         playerInfo.score = score;
-        //playerInfo.position = new System.Numerics.Vector3(transform.position.x, transform.position.y, transform.position.z);
+        positionInfo = transform.position;
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
-       // ServerConnection.Instance.AgarioClient.SendMessage(new PlayerInfoMessage{playerInfo = playerInfo});
     }
 
     void ActivateGameOverScreen()
