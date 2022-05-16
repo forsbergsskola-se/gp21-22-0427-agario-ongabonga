@@ -17,21 +17,6 @@ public class ServerPlayer : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D col){
         ControlSize();
     }
-    void Awake()
-    {
-        //ServerConnection.Instance.AgarioClient.Subscribe(OnMatchInfoMessageRecieved);
-    }
-
-    void OnDestroy(){
-        //ServerConnection.Instance.AgarioClient.MatchInfoMessageRecieved -= OnMatchInfoMessageRecieved;
-    }
-
-    void OnMatchInfoMessageRecieved(MatchInfoMessage obj){
-        playerInfo = obj.matchInfo.bonga;
-        name = playerInfo.name;
-        //TODO: this only supports one player, future should be with ID
-    }
-
     void Update(){
         if (playerInfo.ready){
             score = playerInfo.score;

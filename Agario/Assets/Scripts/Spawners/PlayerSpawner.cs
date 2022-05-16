@@ -28,6 +28,7 @@ public class PlayerSpawner : MonoBehaviour{
          Instantiate(playerPrefab, area.RandomSpawn(), quaternion.identity);
          isAlreadySpawned = true;
       }
+      //TODO: make sure it spawns a player for each player
       else if (isAlreadySpawned && !isAlreadySpawned2){
          Instantiate(serverPlayerPrefab, area.RandomSpawn(), quaternion.identity);
          isAlreadySpawned2 = true;
