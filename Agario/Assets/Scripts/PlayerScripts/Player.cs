@@ -1,3 +1,4 @@
+using AgarioShared.AgarioShared.Model;
 using Messages;
 using TMPro;
 using UnityEngine;
@@ -9,11 +10,14 @@ public class Player : MonoBehaviour
     Collider2D myCollider;
     public GameObject scoreText;
     public GameObject gameOverCanvas;
+    PlayerInfo playerInfo;
 
     void Start()
     {
         scoreText = GameObject.FindWithTag("Score");
         gameOverCanvas.SetActive(false);
+        playerInfo.name = name;
+        playerInfo.ready = true;
     }
 
 
@@ -28,7 +32,7 @@ public class Player : MonoBehaviour
         Debug.Log("im colliding");
         myCollider = GetComponent<Collider2D>();
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
-            var otherPlayer = other.gameObject.GetComponent<ServerPlayer>(); //TODO: use serverPlayer instead?
+            var otherPlayer = other.gameObject.GetComponent<ServerPlayer>();
             score += otherPlayer.score;
             other.gameObject.GetComponent<ServerPlayer>().score = 0;
         }
@@ -38,10 +42,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    void Update(){
+        playerInfo.score = score;
+        playerInfo.position = new System.Numerics.Vector3(transform.position.x, transform.position.y, transform.position.z);
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
-        ConnectionSingleton.Instance.AgarioClient.SendMessage(new PlayerInfoMessage{playerInfo = {name = name, ready = true,score = score}});
+        ConnectionSingleton.Instance.AgarioClient.SendMessage(new PlayerInfoMessage{playerInfo = playerInfo});
     }
 
     void ActivateGameOverScreen()
