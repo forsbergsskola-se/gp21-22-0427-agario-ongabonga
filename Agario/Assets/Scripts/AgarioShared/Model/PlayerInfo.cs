@@ -8,6 +8,6 @@ namespace AgarioShared.AgarioShared.Model{
                 public bool ready;
                 public string name;
                 public int score;
-                public Vector3 position;
+                //public Vector3 position;
         }
 }

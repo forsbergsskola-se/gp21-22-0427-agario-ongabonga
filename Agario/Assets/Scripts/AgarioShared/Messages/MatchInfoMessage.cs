@@ -1,10 +1,11 @@
 ﻿using System;
 using AgarioShared.AgarioShared.Model;
+using AgarioShared.Networking;
 
-namespace AgarioShared.AgarioShared.Messages
+namespace AgarioShared.Messages
 {
     [Serializable]
-    public class MatchInfoMessage
+    public class MatchInfoMessage : MessageBase
     {
         public MatchInfo matchInfo;
     }

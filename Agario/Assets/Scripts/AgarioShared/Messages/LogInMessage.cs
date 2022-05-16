@@ -1,6 +1,10 @@
-﻿namespace AgarioShared.AgarioShared.Messages
+﻿using System;
+using AgarioShared.Networking;
+
+namespace AgarioShared.Messages
 {
-    public class LogInMessage
+    [Serializable]
+    public class LogInMessage : MessageBase
     {
         public string strongName;
 

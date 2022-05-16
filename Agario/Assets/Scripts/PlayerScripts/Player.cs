@@ -44,9 +44,9 @@ public class Player : MonoBehaviour
 
     void Update(){
         playerInfo.score = score;
-        playerInfo.position = new System.Numerics.Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //playerInfo.position = new System.Numerics.Vector3(transform.position.x, transform.position.y, transform.position.z);
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
-        ConnectionSingleton.Instance.AgarioClient.SendMessage(new PlayerInfoMessage{playerInfo = playerInfo});
+       // ServerConnection.Instance.AgarioClient.SendMessage(new PlayerInfoMessage{playerInfo = playerInfo});
     }
 
     void ActivateGameOverScreen()
