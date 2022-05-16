@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using AgarioShared.Assets.Scripts.AgarioShared.Interfaces;
-using AgarioShared.Messages;
 
 namespace AgarioShared.Networking
 {

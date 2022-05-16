@@ -15,10 +15,10 @@ public class PlayerSpawner : MonoBehaviour{
    void Awake()
    {
       area = FindObjectOfType<PlayArea>();
-      //ServerConnection.Instance.AgarioClient.MatchInfoMessageRecieved += OnMatchInfoMessageRecieved;
+      ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMessageRecieved);
    }
 
-   void OnMatchInfoMessageRecieved(MatchInfoMessage obj){
+   void OnMessageRecieved(MatchInfoMessage obj){
       _matchInfo = obj.matchInfo;
    }
 
