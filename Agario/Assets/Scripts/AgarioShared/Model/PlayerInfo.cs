@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 
 namespace AgarioShared.AgarioShared.Model{
 
@@ -8,6 +7,5 @@ namespace AgarioShared.AgarioShared.Model{
                 public bool ready;
                 public string name;
                 public int score;
-                //public Vector3 position;
         }
 }

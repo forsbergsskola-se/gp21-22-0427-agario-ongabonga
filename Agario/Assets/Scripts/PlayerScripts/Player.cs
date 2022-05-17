@@ -1,5 +1,4 @@
 using AgarioShared.AgarioShared.Model;
-using Messages;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public class Player : MonoBehaviour
     Collider2D myCollider;
     public GameObject scoreText;
     public GameObject gameOverCanvas;
-    PlayerInfo playerInfo;
+    PlayerInfo playerInfo; //TODO: why is this never assigned? ofc its empty?
     Vector3 positionInfo;
 
     void Start()
@@ -30,7 +29,6 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("im colliding");
         myCollider = GetComponent<Collider2D>();
         if (myCollider.bounds.Contains(other.bounds.min) && myCollider.bounds.Contains(other.bounds.max)){
             var otherPlayer = other.gameObject.GetComponent<ServerPlayer>();
