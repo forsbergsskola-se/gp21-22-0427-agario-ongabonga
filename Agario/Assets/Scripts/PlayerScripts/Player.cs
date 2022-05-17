@@ -1,4 +1,6 @@
 using AgarioShared.AgarioShared.Model;
+using AgarioShared.Messages;
+using Messages;
 using TMPro;
 using UnityEngine;
 
@@ -9,15 +11,20 @@ public class Player : MonoBehaviour
     Collider2D myCollider;
     public GameObject scoreText;
     public GameObject gameOverCanvas;
+    MatchInfo matchInfo;
     PlayerInfo playerInfo; //TODO: why is this never assigned? ofc its empty?
     Vector3 positionInfo;
 
     void Start()
     {
+        ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMatchInfoMessage);
         scoreText = GameObject.FindWithTag("Score");
         gameOverCanvas.SetActive(false);
-        playerInfo.name = name;
         playerInfo.ready = true;
+    }
+
+    void OnMatchInfoMessage(MatchInfoMessage obj){
+        playerInfo = obj.matchInfo.onga;
     }
 
 

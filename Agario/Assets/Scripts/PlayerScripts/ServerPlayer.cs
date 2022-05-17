@@ -1,3 +1,4 @@
+using System;
 using AgarioShared.AgarioShared.Model;
 using AgarioShared.Messages;
 using UnityEngine;
@@ -7,6 +8,15 @@ public class ServerPlayer : MonoBehaviour{
     public int score;
     string name;
     PlayerInfo playerInfo;
+    MatchInfo matchInfo = new MatchInfo();
+
+    void Start(){
+        ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMatchInfoMessage);
+    }
+
+    void OnMatchInfoMessage(MatchInfoMessage obj){
+        playerInfo = obj.matchInfo.bonga;
+    }
 
     public void ControlSize()
     {
