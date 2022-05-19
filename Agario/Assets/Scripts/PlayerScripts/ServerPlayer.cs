@@ -1,5 +1,5 @@
-using System;
 using AgarioShared.AgarioShared.Model;
+using AgarioShared.Assets.Scripts.AgarioShared.Messages;
 using AgarioShared.Messages;
 using UnityEngine;
 
@@ -7,11 +7,16 @@ public class ServerPlayer : MonoBehaviour{
     float sizeManipulator;
     public int score;
     string name;
-    PlayerInfo playerInfo;
-    MatchInfo matchInfo = new MatchInfo();
+    PlayerInfo playerInfo = new PlayerInfo();
 
     void Start(){
         ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMatchInfoMessage);
+        ServerConnection.Instance.Connection.Subscribe<PositionMessage>(OnPositionMessageReceived);
+    }
+
+    void OnPositionMessageReceived(PositionMessage obj){
+        var playerPos = obj.playerPosition;
+        transform.position = new Vector3(playerPos.playerX, playerPos.playerY);
     }
 
     void OnMatchInfoMessage(MatchInfoMessage obj){

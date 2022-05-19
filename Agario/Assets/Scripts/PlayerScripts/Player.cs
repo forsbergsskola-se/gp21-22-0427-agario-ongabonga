@@ -1,6 +1,6 @@
 using AgarioShared.AgarioShared.Model;
+using AgarioShared.Assets.Scripts.AgarioShared.Messages;
 using AgarioShared.Messages;
-using Messages;
 using TMPro;
 using UnityEngine;
 
@@ -12,18 +12,21 @@ public class Player : MonoBehaviour
     public GameObject scoreText;
     public GameObject gameOverCanvas;
     MatchInfo matchInfo;
-    PlayerInfo playerInfo; //TODO: why is this never assigned? ofc its empty?
-    Vector3 positionInfo;
+    PlayerInfo playerInfo = new PlayerInfo(); //TODO: why is this never assigned? ofc its empty?
+    float playerX, playerY;
+    PlayerPosition playerPosition;
 
     void Start()
     {
-        ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMatchInfoMessage);
+        ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMatchInfoMessageReceived);
         scoreText = GameObject.FindWithTag("Score");
         gameOverCanvas.SetActive(false);
         playerInfo.ready = true;
     }
 
-    void OnMatchInfoMessage(MatchInfoMessage obj){
+    
+
+    void OnMatchInfoMessageReceived(MatchInfoMessage obj){
         playerInfo = obj.matchInfo.onga;
     }
 
@@ -51,7 +54,12 @@ public class Player : MonoBehaviour
     void Update(){
         //TODO: send this to the server and let it interpretate
         playerInfo.score = score;
-        positionInfo = transform.position;
+        playerX = transform.position.x;
+        playerY = transform.position.y;
+        playerPosition = new PlayerPosition(playerX, playerY);
+        var message = new PositionMessage();
+        message.playerPosition = playerPosition;
+        ServerConnection.Instance.Connection.SendMessage(message);
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
     }
 

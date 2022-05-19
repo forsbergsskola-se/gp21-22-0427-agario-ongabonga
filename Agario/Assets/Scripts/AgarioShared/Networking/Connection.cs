@@ -36,7 +36,6 @@ namespace AgarioShared.Networking
     public void SendMessage<TMessage>(TMessage message) where TMessage : MessageBase{
       streamWriter.WriteLine(_json.Serialize(message));
       streamWriter.Flush();
-      //TODO: need to send more messages at all times??
     }
 
     void ReceiveMessages(){
