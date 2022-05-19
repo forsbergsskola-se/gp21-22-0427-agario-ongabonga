@@ -12,7 +12,7 @@ public class PlayerSpawner : MonoBehaviour{
    bool isAlreadySpawned;
    bool isAlreadySpawned2;
 
-   void Start()
+   void Awake()
    {
       area = FindObjectOfType<PlayArea>();
       //TODO: this has not been instantiated before the last matchinfomessage has been sent.
