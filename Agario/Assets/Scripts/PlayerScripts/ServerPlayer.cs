@@ -8,15 +8,15 @@ public class ServerPlayer : MonoBehaviour{
     public int score;
     string name;
     PlayerInfo playerInfo = new PlayerInfo();
+    PlayerPosition playerPos = new PlayerPosition(0,0);
 
     void Start(){
         ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMatchInfoMessage);
-        ServerConnection.Instance.Connection.Subscribe<PositionMessage>(OnPositionMessageReceived);
+        ServerConnection.Instance.Connection.Subscribe<playerUpdateMessage>(OnPositionMessageReceived);
     }
 
-    void OnPositionMessageReceived(PositionMessage obj){
-        var playerPos = obj.playerPosition;
-        transform.position = new Vector3(playerPos.playerX, playerPos.playerY);
+    void OnPositionMessageReceived(playerUpdateMessage obj){
+        playerPos = obj.playerPosition;
     }
 
     void OnMatchInfoMessage(MatchInfoMessage obj){
@@ -36,5 +36,6 @@ public class ServerPlayer : MonoBehaviour{
         if (playerInfo.ready){
             score = playerInfo.score;
         }
+        transform.position = new Vector3(playerPos.playerX, playerPos.playerY);
     }
 }

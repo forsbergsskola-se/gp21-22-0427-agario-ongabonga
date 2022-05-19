@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public GameObject scoreText;
     public GameObject gameOverCanvas;
     MatchInfo matchInfo;
-    PlayerInfo playerInfo = new PlayerInfo(); //TODO: why is this never assigned? ofc its empty?
+    PlayerInfo playerInfo = new PlayerInfo();
     float playerX, playerY;
     PlayerPosition playerPosition;
 
@@ -52,13 +52,13 @@ public class Player : MonoBehaviour
     }
 
     void Update(){
-        //TODO: send this to the server and let it interpretate
         playerInfo.score = score;
         playerX = transform.position.x;
         playerY = transform.position.y;
         playerPosition = new PlayerPosition(playerX, playerY);
-        var message = new PositionMessage();
+        var message = new playerUpdateMessage();
         message.playerPosition = playerPosition;
+        message.score = score;
         ServerConnection.Instance.Connection.SendMessage(message);
         scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {score}";
     }

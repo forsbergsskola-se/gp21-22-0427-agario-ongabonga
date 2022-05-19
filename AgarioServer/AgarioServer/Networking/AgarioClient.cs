@@ -13,19 +13,22 @@ namespace AgarioServer.Networking;
         readonly PlayerInfo _playerInfo;
         readonly AgarioMatch _match;
         public float posX, posY;
-        public Connection Connection{ get; }
+        public int score;
+     public Connection Connection{ get; }
         
         public AgarioClient(TcpClient client, AgarioMatch match, PlayerInfo playerInfo){
             Connection = new Connection(new ConsoleLogger(), new ConsoleJson(), client);
             _match = match;
             _playerInfo = playerInfo;
+            score = _playerInfo.score;
             Connection.Subscribe<LogInMessage>(OnMessageRecieved);
-            Connection.Subscribe<PositionMessage>(OnPositionRecieved);
+            Connection.Subscribe<playerUpdateMessage>(OnPlayerUpdateRecieved);
         }
 
-        void OnPositionRecieved(PositionMessage obj){
+        void OnPlayerUpdateRecieved(playerUpdateMessage obj){
             posX = obj.playerPosition.playerX;
             posY = obj.playerPosition.playerY;
+            score = obj.score;
             _match.DistributePlayerPositions();
         }
 

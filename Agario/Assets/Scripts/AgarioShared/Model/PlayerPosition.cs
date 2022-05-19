@@ -1,5 +1,8 @@
-﻿namespace AgarioShared.AgarioShared.Model{
+﻿using System;
 
+namespace AgarioShared.AgarioShared.Model{
+
+    [Serializable]
     public class PlayerPosition{
         public float playerX, playerY;
 

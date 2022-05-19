@@ -27,8 +27,7 @@ public class ServerConnection
             strongName = playerName
         });
     }
-
     void OnMessageReceived(MatchInfoMessage matchInfo){
-        Debug.Log(matchInfo.matchInfo.onga.name);
+        Debug.Log(matchInfo.matchInfo.bonga.name);
     }
 }

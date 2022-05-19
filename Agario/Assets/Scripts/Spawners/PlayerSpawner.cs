@@ -12,9 +12,10 @@ public class PlayerSpawner : MonoBehaviour{
    bool isAlreadySpawned;
    bool isAlreadySpawned2;
 
-   void Awake()
+   void Start()
    {
       area = FindObjectOfType<PlayArea>();
+      //TODO: this has not been instantiated before the last matchinfomessage has been sent.
       ServerConnection.Instance.Connection.Subscribe<MatchInfoMessage>(OnMessageRecieved);
    }
 
@@ -30,6 +31,13 @@ public class PlayerSpawner : MonoBehaviour{
       else if (isAlreadySpawned && !isAlreadySpawned2){
          Instantiate(serverPlayerPrefab, area.RandomSpawn(), quaternion.identity);
          isAlreadySpawned2 = true;
+      }
+
+      if (Input.GetKeyDown(KeyCode.A)){
+         var msg = new MatchInfoMessage{
+            matchInfo = _matchInfo
+         };
+         ServerConnection.Instance.Connection.SendMessage(msg);
       }
    }
 }

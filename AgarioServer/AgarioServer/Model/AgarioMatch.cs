@@ -4,7 +4,6 @@ using AgarioShared.AgarioShared.Model;
 using AgarioShared.Assets.Scripts.AgarioShared.Messages;
 using AgarioShared.Messages;
 
-
 namespace AgarioServer;
 
 public class AgarioMatch
@@ -26,20 +25,22 @@ public class AgarioMatch
    {
       var message = new MatchInfoMessage
       {
-         matchInfo = this.matchInfo
+         matchInfo = matchInfo
       };
       Onga?.Connection.SendMessage(message);
       Bonga?.Connection.SendMessage(message);
    }
 
    public void DistributePlayerPositions(){
-      var bongaPos = new PlayerPosition(Bonga!.posX, Bonga!.posY);
-      var bongaMsg = new PositionMessage{
-         playerPosition = bongaPos
+      var bongaPos = new PlayerPosition(Bonga.posX, Bonga.posY);
+      var bongaMsg = new playerUpdateMessage(){
+         playerPosition = bongaPos,
+         score = Bonga.score
       };
-      var ongaPos = new PlayerPosition(Onga!.posX, Onga!.posY);
-      var ongaMsg = new PositionMessage{
-         playerPosition = ongaPos
+      var ongaPos = new PlayerPosition(Onga.posX, Onga.posY);
+      var ongaMsg = new playerUpdateMessage(){
+         playerPosition = ongaPos,
+         score = Onga.score
       };
       Bonga?.Connection.SendMessage(ongaMsg);
       Onga?.Connection.SendMessage(bongaMsg);
@@ -55,6 +56,7 @@ public class AgarioMatch
                Console.WriteLine("Start game!");
                matchInfo.started = true;
                DistributeMatchInfo();
+               DistributePlayerPositions();
             }
          }
       }
